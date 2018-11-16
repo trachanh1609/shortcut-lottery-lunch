@@ -5,8 +5,10 @@ const bodyParser = require('body-parser');
 const app = express();
 const router = require('./router');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
 // App setup
+dotenv.config();
 
 // Morgan is a middleware that logs all requests and response
 // This is for debugging
