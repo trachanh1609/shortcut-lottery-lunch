@@ -21,3 +21,4 @@ I wonder if I should give you these secrets.
 
 If you have those secrets, try `$npm run backend` again. Otherwise, consider connecting to your own DB with your own DB_Username, DB_Password and DB_Connection_String
 
+I will add more later on....
