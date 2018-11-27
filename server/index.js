@@ -6,6 +6,11 @@ const app = express();
 const router = require('./router');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const Authentication = require('../controllers/authentication');
+const passport = require('passport');
+const requireAuth = passport.authenticate('jwt', { session: false});
+const requireSignin = passport.authenticate('local', {session: false, failureRedirect: '/login' } );
+
 
 dotenv.config();
 
@@ -36,6 +41,14 @@ app.use('/api', router) ;
 
 app.get('/', function(req, res, next){
     res.send(['hello', 'world']);
+});
+
+app.post('/signin', requireSignin, Authentication.signin) ;
+
+app.post('/signup', Authentication.signup);
+
+app.get('/dashboard', requireAuth, function(req, res){
+    res.send('You can only view this message if you are logged in');
 });
 
 const port = process.env.PORT || 4000;
